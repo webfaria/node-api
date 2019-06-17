@@ -7,21 +7,11 @@ const app = express();
 
 //inicando o BD
 mongoose.connect('mongodb://localhost:27017/nodeapi',
- { useNewUrlParser: true });
+    { useNewUrlParser: true });
 requireDir('./src/models');
 
-const Produto = mongoose.model('Produto');
+//rotas
+app.use('/api', require('./src/routes'));
 
-//primeira rota
-app.get('/',(req, res) => {
-    Produto.create({
-        titulo: 'React Native',
-        descricao: 'Build native apps with React',
-        url: 'www.github.com/webfaria'
-    });
-
-    res.send("Hello Rocksetseat");
-})
-
-app.listen(3001); 
+app.listen(3001);
 
